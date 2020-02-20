@@ -10,6 +10,22 @@ All the variables are in reduced units.
 # Import libraries
 import math
 
+def distance(atom1, atom2):
+    """
+        Computes the square of inter particle distance
+        Minimum image convention is applied for distance calculation for periodic boundary conditions
+    """
+    dx = atom1.x - atom2.x
+    dy = atom1.y - atom2.y
+    dz = atom1.z - atom2.z
+    
+    if dx > halfLx
+        dx -= Lx
+    
+    
+    return dx**2 + dy**2 + dz**2
+
+
 def energy(atom1, atom2, rc):
     '''calculates the energy of the system'''
 
@@ -17,12 +33,8 @@ def energy(atom1, atom2, rc):
     sig = atom1.sigma
     rcsq = rc**2
 
-    dx = atom1.x - atom2.x
-    dy = atom1.y - atom2.y
-    dz = atom1.z - atom2.z
-
-    rsq = dx**2 + dy**2 + dz**2
-
+    rsq = distance(atom1, atom2)
+    
     if rsq <= rcsq:
         energy = 4.0*eps*( (sig/rsq)**6.0 - (sig/rsq)**3.0)
     else:
