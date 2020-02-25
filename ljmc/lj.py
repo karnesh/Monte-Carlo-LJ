@@ -18,8 +18,8 @@ class Simulation:
         Parameters and constants
     """
 
-    kB = 1
-    N = 500
+    kB = 1                      # Boltzmann constant
+    N = 500                     # Number of atoms
     sigma = 1
     epsilon = 1
     mass = 1
@@ -41,6 +41,7 @@ class Simulation:
         for i in range(0,self.N):
             self.atoms.append(Atom())
 
+        # set the epsilon, sigma, and mass parameters
         for index in range(0,N):
             self.atoms[index].sigma = sigma
             self.atoms[index].eps = epsilon
@@ -56,8 +57,10 @@ class Simulation:
             Place all the atoms randomly in the box
         """
 
-
-
+        for index in range(0, N):
+            self.atom[index].x = random.uniform(0, L)
+            self.atom[index].y = random.uniform(0, L)
+            self.atom[index].z = random.uniform(0, L)
 
 
     def perodicBoundaryCondition(atom):
@@ -80,4 +83,9 @@ class Simulation:
             atom.z += L  
 
         return atom
+
+
+    def runSimulation(self):
+        """
+
 
