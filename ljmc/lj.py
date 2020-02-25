@@ -22,6 +22,7 @@ class Simulation:
     N = 500
     sigma = 1
     epsilon = 1
+    mass = 1
     rcut = 2.5
     steps = 100000
     temp    = 8.5e-1
@@ -30,15 +31,41 @@ class Simulation:
     atoms = []
 
     def __init__(self):
+
         """
             Creates a simulation with N atoms
         """
 
+        print("Initializing system...")
+
+        for i in range(0,self.N):
+            self.atoms.append(Atom())
+
+        for index in range(0,N):
+            self.atoms[index].sigma = sigma
+            self.atoms[index].eps = epsilon
+            self.atoms[index].mass = mass
+
+        self.assignPosition();    
+
+
+    def assignPositions(self):
+
+        """
+            Initialize the simulation Box
+            Place all the atoms randomly in the box
+        """
+
+
+
+
 
     def perodicBoundaryCondition(atom):
+
         """
             Apply perodic boundary conditions.
         """
+
         if atom.x > L:
             atom.x -= L
         elif atom.x < 0:
