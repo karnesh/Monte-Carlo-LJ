@@ -12,18 +12,45 @@ import math
 import random
 from atom import Atom
 
-def perodicBoundaryCondition(self):
-    '''Apply perodic boundary conditions.'''
-    if self.atom.x > L:
-        self.atom.x -= L
-    elif self.atom.x < 0:
-        self.atom.x += L
-    if self.atom.y > L:
-        self.atom.y -= L
-    elif self.atom.y < 0:
-        self.atom.y += L
-    if self.atom.z > L:
-        self.atom.z -= L
-    elif self.atom.z < 0:
-        self.atom.z += L  
+class Simulation:
+
+    """
+        Parameters and constants
+    """
+
+    kB = 1
+    N = 500
+    sigma = 1
+    epsilon = 1
+    rcut = 2.5
+    steps = 100000
+    temp    = 8.5e-1
+    density = 1.0e-3
+    L =  (N/density)**(1.0/3.0)
+    atoms = []
+
+    def __init__(self):
+        """
+            Creates a simulation with N atoms
+        """
+
+
+    def perodicBoundaryCondition(atom):
+        """
+            Apply perodic boundary conditions.
+        """
+        if atom.x > L:
+            atom.x -= L
+        elif atom.x < 0:
+            atom.x += L
+        if atom.y > L:
+            atom.y -= L
+        elif atom.y < 0:
+            atom.y += L
+        if atom.z > L:
+            atom.z -= L
+        elif atom.z < 0:
+            atom.z += L  
+
+        return atom
 
