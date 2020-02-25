@@ -5,30 +5,25 @@ A python package to perfom Markov chain Monte Carlo simulation of Lennard Jones 
 Handles the primary functions
 """
 
+# import libraries
 
-def canvas(with_attribution=True):
-    """
-    Placeholder function to show example docstring (NumPy format)
+import os
+import math
+import random
+from atom import Atom
 
-    Replace this function and doc string for your own project
+def perodicBoundaryCondition(self):
+    '''Apply perodic boundary conditions.'''
+    if self.atom.x > L:
+        self.atom.x -= L
+    elif self.atom.x < 0:
+        self.atom.x += L
+    if self.atom.y > L:
+        self.atom.y -= L
+    elif self.atom.y < 0:
+        self.atom.y += L
+    if self.atom.z > L:
+        self.atom.z -= L
+    elif self.atom.z < 0:
+        self.atom.z += L  
 
-    Parameters
-    ----------
-    with_attribution : bool, Optional, default: True
-        Set whether or not to display who the quote is from
-
-    Returns
-    -------
-    quote : str
-        Compiled string including quote and optional attribution
-    """
-
-    quote = "The code is but a canvas to our imagination."
-    if with_attribution:
-        quote += "\n\t- Adapted from Henry David Thoreau"
-    return quote
-
-
-if __name__ == "__main__":
-    # Do something if this file is invoked on its own
-    print(canvas())
