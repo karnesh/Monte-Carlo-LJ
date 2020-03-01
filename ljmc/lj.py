@@ -49,12 +49,6 @@ class Simulation:
             self.atoms[index].mass = mass
 
         self.assignPosition()
-        energy = self.updateEnergy()
-
-        if os.path.exists('energy.dat'):
-			os.remove('energy.dat')
-
-		writeEnergy(str(0), str(energy))
 
         print("done.")   
 
@@ -115,6 +109,54 @@ class Simulation:
         	Runs Monte Carlo simulations for number of nsteps.
         """
 
+        energy = self.updateEnergy()
+
+        if os.path.exists('energy.dat'):
+			os.remove('energy.dat')
+
+		writeEnergy(str(0), str(energy))
+
+        for step in range(0, nsteps):
+
+        	# Choose a particle to move at random.
+			p = random.randint(0, N-1)
+
+			#Save its coordinates
+			xold = self.atom[p].x
+			yold = self.atom[p].y
+			zold = self.atom[p].z
+
+			# Move particle and evaluate energy
+
+			energy_old = updateEnergy()
+
+
+			xnew = self.atom[p].x = xold +  random.uniform(-1, 1)
+			ynew = self.atom[p].y = yold +  random.uniform(-1, 1)
+			znew = self.atom[p].z = zold +  random.uniform(-1, 1)
+
+			perodicBoundaryCondition(self.atom[p])
+
+			energy_new = updateEnergy()
+
+			deltaE =  energy_new - energy_old
+
+			#Apply Acceptance Criteria
+
+			if deltaE < 0:
+				self.atom[p].x = xold
+				self.atom[p].y = yold 
+				self.atom[p].z = zold
+				energy += deltaE
+			else:
+				rand = random.random()
+				if math.exp(-deltaE/temp) > rand:
+					self.atom[p].x = xold
+					self.atom[p].y = yold 
+					self.atom[p].z = zold
+					energy += deltaE
+
+			writeEnergy(str(0), str(energy))
 
 
 
