@@ -11,6 +11,7 @@ import os
 import math
 import random
 from atom import Atom
+import energy
 
 class Simulation:
 
@@ -24,7 +25,7 @@ class Simulation:
     epsilon = 1					# Energy parameter
     mass = 1					# mass of atoms
     rcut = 2.5					# cut-off distance
-    steps = 100000				# Total number of MC steps
+    nsteps = 100000				# Total number of MC steps
     temp    = 8.5e-1			# Temperature
     density = 1.0e-3			# density
     L =  (N/density)**(1.0/3.0) # Box length
@@ -47,7 +48,15 @@ class Simulation:
             self.atoms[index].eps = epsilon
             self.atoms[index].mass = mass
 
-        self.assignPosition();    
+        self.assignPosition()
+        energy = self.updateEnergy()
+
+        if os.path.exists('energy.dat'):
+			os.remove('energy.dat')
+
+		writeEnergy(str(0), str(energy))
+
+        print("done.")   
 
 
     def assignPositions(self):
@@ -92,7 +101,7 @@ class Simulation:
 		"""
 
 		energy = 0
-		
+
 		for atom1 in range(0, self.N-1):
             for atom2 in range(atom1+1, self.N):
             	energy += energy(atom1, atom2, rcut)
@@ -101,6 +110,13 @@ class Simulation:
 
 
     def runSimulation(self):
+
         """
+        	Runs Monte Carlo simulations for number of nsteps.
+        """
+
+
+
+
 
 
