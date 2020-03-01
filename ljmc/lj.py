@@ -84,6 +84,15 @@ class Simulation:
 
         return atom
 
+    def writeEnergy(step, energy):
+
+	'''
+		Writes the energy to a file.
+	'''
+	
+		with open('energy.dat', 'a') as f:
+			f.write('{0} {1}\n'.format(step, energy))
+
 
     def runSimulation(self):
         """
