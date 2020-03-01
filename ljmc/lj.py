@@ -20,15 +20,15 @@ class Simulation:
 
     kB = 1                      # Boltzmann constant
     N = 500                     # Number of atoms
-    sigma = 1
-    epsilon = 1
-    mass = 1
-    rcut = 2.5
-    steps = 100000
-    temp    = 8.5e-1
-    density = 1.0e-3
-    L =  (N/density)**(1.0/3.0)
-    atoms = []
+    sigma = 1					# Size parameter
+    epsilon = 1					# Energy parameter
+    mass = 1					# mass of atoms
+    rcut = 2.5					# cut-off distance
+    steps = 100000				# Total number of MC steps
+    temp    = 8.5e-1			# Temperature
+    density = 1.0e-3			# density
+    L =  (N/density)**(1.0/3.0) # Box length
+    atoms = []					# Array to store atoms
 
     def __init__(self):
 
@@ -86,12 +86,21 @@ class Simulation:
 
     def writeEnergy(step, energy):
 
-	'''
+	"""
 		Writes the energy to a file.
-	'''
-	
+	"""
+
 		with open('energy.dat', 'a') as f:
 			f.write('{0} {1}\n'.format(step, energy))
+
+
+	def updateEnergy(self):
+
+		"""
+			Calculates the net potential on each atom, applying a cutoff radius
+		"""
+
+
 
 
     def runSimulation(self):
