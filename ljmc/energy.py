@@ -8,6 +8,7 @@ All the variables are in reduced units.
 """
 
 def distance(atom1, atom2):
+    
     """
         Computes the square of inter particle distance
         Minimum image convention is applied for distance calculation for periodic boundary conditions
@@ -34,6 +35,7 @@ def distance(atom1, atom2):
 
 
 def energy(atom1, atom2, rc):
+
     '''
         calculates the energy of the system
     '''
@@ -52,13 +54,14 @@ def energy(atom1, atom2, rc):
         energy = 0.0
     
 
-def writeEnergy(step, en):
+def writeEnergy(step, energy):
+
     '''
         Writes the energy to a file.
     '''
     
     with open('energy.dat', 'a') as f:
-        f.write('{0} {1}\n'.format(step, en))
+        f.write('{0} {1}\n'.format(step, energy))
 
 
 

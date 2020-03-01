@@ -84,15 +84,6 @@ class Simulation:
 
         return atom
 
-    def writeEnergy(step, energy):
-
-	"""
-		Writes the energy to a file.
-	"""
-
-		with open('energy.dat', 'a') as f:
-			f.write('{0} {1}\n'.format(step, energy))
-
 
 	def updateEnergy(self):
 
@@ -100,7 +91,13 @@ class Simulation:
 			Calculates the net potential on each atom, applying a cutoff radius
 		"""
 
+		energy = 0
+		
+		for atom1 in range(0, self.N-1):
+            for atom2 in range(atom1+1, self.N):
+            	energy += energy(atom1, atom2, rcut)
 
+        return energy
 
 
     def runSimulation(self):
